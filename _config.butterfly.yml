@@ -907,6 +907,7 @@ CDN:
 deploy:
 type: git
 repo: git@github.com:daxiahu/daxiahu.github.io.git
+branch: gh-pages
 
 # wordcount
 post_wordcount:
