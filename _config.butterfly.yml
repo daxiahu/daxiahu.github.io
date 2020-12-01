@@ -506,6 +506,7 @@ canvas_ribbon:
 canvas_fluttering_ribbon:
   enable: true
   mobile: false
+  click_to_change: false
 
 # canvas_nest
 # https://github.com/hustcc/canvas-nest.js
@@ -799,7 +800,7 @@ inject:
   head:
     # - <link rel="stylesheet" href="/xxx.css">
   bottom:
-    # - <script src="xxxx"></script>
+    <script src="/js/click.js"></script>
 
 # CDN
 # Don't modify the following settings unless you know how they work
