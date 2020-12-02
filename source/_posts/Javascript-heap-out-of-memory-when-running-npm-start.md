@@ -1,5 +1,5 @@
 ---
-title: Javascript heap out of memory when running npm start
+title: 记一次Javascript内存溢出事件
 date: 2020-12-01 16:35:42
 tags: 前端日常
 cover: https://cdn.jsdelivr.net/gh/daxiahu/ImageBed@master/img/20201201163745.png
@@ -38,10 +38,18 @@ V8 的垃圾回收策略主要基于分代式垃圾回收机制。所谓分代�
 setx NODE_OPTIONS --max_old_space_size=4096**） 
 <div style="text-align:center">
 <p style="color:red;font-size:24px">结果还是报错...</p>
-<img width="300" src="http://ww2.sinaimg.cn/large/9150e4e5ly1fh5rozc3idj204603xwf4.jpg"/>
+<img width="300" src="https://cdn.jsdelivr.net/gh/daxiahu/ImageBed@master/img/20201202104719.png"/>
 </div>
 <br/>
 <p style="text-indent:2em">
-冷静下来后分析一波，如果不是内存的原因，在运行的时候报内存溢出要么就是代码里面有死循环导致内存溢出，要么就是node_modules中一些第三方库版本不正确，导致占用内存过大。代码应该没有问题，因为同事的项目可以跑起来，那么很可能是node_modules的问题。但是我试过重新安装node_modules也没有解决啊。此时想起了一个罪魁祸首，package-lock.json文件，估计是哪个憨憨提npm i更新了这个文件并提交了，导致某些插件升级了，版本存在兼容问题。太坑了！！！于是我恢复了package-lock.json文件到上个版本，并重新npm i了一次，果然项目跑了起来。
+冷静下来后分析一波，如果不是内存的原因，在运行的时候报内存溢出要么就是代码里面有死循环导致内存溢出，要么就是node_modules中一些第三方库版本不正确，导致占用内存过大。代码应该没有问题，因为同事的项目可以跑起来，那么很可能是node_modules的问题。但是我试过重新安装node_modules也没有解决啊。此时想起了一个罪魁祸首，package-lock.json文件，估计是哪个憨憨提npm i更新了这个文件并提交了，导致某些三方库升级了，版本存在兼容问题。太坑了！！！于是我恢复了package-lock.json文件到上个版本，并重新npm i了一次，果然项目跑了起来。
 </p>
-最后，我看了下package-lock.json文件的提交记录，捏紧了拳头，想过去和那个同学聊聊人生。
+<p style="text-indent:2em">
+当你执行 npm i时，nodeJS会从你的package.json中读取所有的dependencies信息，package.json文件只记录你通过npm install方式安装的模块信息，而这些模块所依赖的其他子模块的信息不会记录。package-lock.json文件锁定所有模块的版本号(包括主模块和所有依赖子模块)。
+</p>
+<p style="text-indent:2em">
+package.json文件只能锁定大版本，即版本号的第一位，不能锁定后面的小版本，你每次npm install时候拉取的该大版本下面最新的版本。所以为了稳定性考虑我们不能随意升级依赖包，而package-lock.json就是来解决包锁定不升级问题的。
+</p>
+
+所以如果不是出于项目需要，平时尽量不要将package-lock.json文件的改动提交上去，否则可能会导致其他小伙伴无法正常运行项目。
+![](https://cdn.jsdelivr.net/gh/daxiahu/ImageBed@master/img/20201202110730.png)
