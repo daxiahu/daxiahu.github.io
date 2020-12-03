@@ -1,38 +1,46 @@
 ---
-title: Hello World!
+title: 斗鱼app个人中心整体优化桥接文档（RN）
 ---
-Welcome to [Hexo](https://hexo.io/)! This is your very first post. Check [documentation](https://hexo.io/docs/) for more info. If you get any problems when using Hexo, you can find the answer in [troubleshooting](https://hexo.io/docs/troubleshooting.html) or you can ask me on [GitHub](https://github.com/hexojs/hexo/issues).
 
-## Quick Start
+### 斗鱼app个人中心整体优化桥接文档（RN）
 
-### Create a new post
+<img src="https://cdn.jsdelivr.net/gh/daxiahu/ImageBed@master/img/20201130211818.jpg" width="400"/>
 
-``` bash
-$ hexo new "My New Post"
+&ensp;
+
+
+#### 跳转实名认证逻辑
+```mermaid
+graph TB
+    start[点击实名认证按钮] --> hasPhone{判断是否绑定了手机号}
+    hasPhone -- 是 --> A(判断是否需要实名)
+    hasPhone -- 否 --> noPhone[toast提示需要先绑定手机号]
+    A --> B{状态为未通过或者未实名}
+    B -- 是 --> F[判断是否需要跳转H5认证页面]
+    F --> G{DYBundleConfig.switchInfo.h5Ident}
+    B -- 否 -->C[状态为正在获取或正在审核,toast提示]
+    G -- 是 --> D[jumpH5RealNameVerifyPage跳转]
+    G -- 否 --> E[跳转RN]
+    noPhone --> stop
+    C --> stop
+    D --> stop[结束]
+    E --> stop
 ```
 
-More info: [Writing](https://hexo.io/docs/writing.html)
-
-### Run server
-
-``` bash
-$ hexo server
+#### 跳转绑定邮箱逻辑
+```mermaid
+graph TB
+    start[点击绑定邮箱按钮] --> A{判断是否已绑定邮箱}
+    A -- 是 --> B[不作任何操作]
+    A -- 否 --> C[跳转到绑定邮箱RN页面]
+    B --> stop[结束]
+    C --> stop
 ```
 
-More info: [Server](https://hexo.io/docs/server.html)
+**原生Android和iOS通过‘模块名’+‘组件名’方式跳转对应RN页面**
 
-### Generate static files
-
-``` bash
-$ hexo generate
-```
-
-More info: [Generating](https://hexo.io/docs/generating.html)
-
-### Deploy to remote sites
-
-``` bash
-$ hexo deploy
-```
-
-More info: [Deployment](https://hexo.io/docs/one-command-deployment.html)
+|页面名称 | 个人资料-实名认证 | 个人资料-绑定邮箱|
+|:---:|:---:|:---:|
+|模块名（module） | DYRNPersonalCenter | DYRNPersonalCenter|
+|组件名（component）| RealNameVerify | BindEmail|
+|参数| 无 | 无|
