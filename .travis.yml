@@ -18,7 +18,6 @@ deploy:
   local-dir: public
 notifications:
   email:
-    - 2209381197@qq.com
-  slack:
-    if: branch = master
+    recipients:
+      - 2209381197@qq.com
     on_success: always
