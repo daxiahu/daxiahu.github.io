@@ -467,7 +467,7 @@ yandex_site_verification:
 # The position of site info, eg: 300px/300em/300rem/10% (主頁標題距離頂部距離)
 index_site_info_top:
 # The height of top_img, eg: 300px/300em/300rem (主頁top_img高度)
-index_top_img_height: 450px
+# index_top_img_height: 450px
 
 # The user interface setting of category and tag page (category和tag頁的UI設置)
 # index - same as Homepage UI (index 值代表 UI將與首頁的UI一樣)
@@ -579,8 +579,27 @@ hr_icon:
   icon-top:
 
 # the subtitle on homepage (主頁subtitle)
-subtitle: 心之所向，素履以往
-
+# subtitle: 心之所向，素履以往
+# the subtitle on homepage (主頁subtitle)
+subtitle:
+  enable: true
+  # Typewriter Effect (打字效果)
+  effect: true
+  # loop (循環打字)
+  loop: false
+  # source調用第三方服務
+  # source: false 關閉調用
+  # source: 1  調用搏天api的隨機語錄（簡體） https://api.btstu.cn/
+  # source: 2  調用一言網的一句話（簡體） https://hitokoto.cn/
+  # source: 3  調用一句網（簡體） http://yijuzhan.com/
+  # source: 4  調用今日詩詞（簡體） https://www.jinrishici.com/
+  # subtitle 會先顯示 source , 再顯示 sub 的內容
+  source: 2
+  # 如果有英文逗號' , ',請使用轉義字元 &#44;
+  # 如果有英文雙引號' " ',請使用轉義字元 &quot;
+  # 開頭不允許轉義字元，如需要，請把整個句子用雙引號包住
+  # 如果關閉打字效果，subtitle只會顯示sub的第一行文字
+  sub: 心之所向，素履以往
 
 # Loading Animation (加載動畫)
 preloader: true
