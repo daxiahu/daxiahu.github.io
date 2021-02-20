@@ -26,29 +26,29 @@ sudo systemctl restart sshd
 
 ### 安装nginx
 
-##### 1.gcc 安装
+#### 1.gcc 安装
 安装 nginx 需要先将官网下载的源码进行编译，编译依赖 gcc 环境，如果没有 gcc 环境，则需要安装：
 ```
 yum install gcc-c++
 ```
 
-##### 2.PCRE pcre-devel 安装
+#### 2.PCRE pcre-devel 安装
 PCRE(Perl Compatible Regular Expressions) 是一个Perl库，包括 perl 兼容的正则表达式库。nginx 的 http 模块使用 pcre 来解析正则表达式，所以需要在 linux 上安装 pcre 库，pcre-devel 是使用 pcre 开发的一个二次开发库。nginx也需要此库。命令：
 ```
 yum install -y pcre pcre-devel
 ```
 
-##### 3.zlib 安装
+#### 3.zlib 安装
 zlib 库提供了很多种压缩和解压缩的方式， nginx 使用 zlib 对 http 包的内容进行 gzip ，所以需要在 Centos 上安装 zlib 库。
 
-##### 4.OpenSSL 安装
+#### 4.OpenSSL 安装
 OpenSSL 是一个强大的安全套接字层密码库，囊括主要的密码算法、常用的密钥和证书封装管理功能及 SSL 协议，并提供丰富的应用程序供测试或其它目的使用。
 nginx 不仅支持 http 协议，还支持 https（即在ssl协议上传输http），所以需要在 Centos 安装 OpenSSL 库。
 ```
 yum install -y openssl openssl-devel
 ```
 
-##### 5.下载nginx并安装
+#### 5.下载nginx并安装
 使用wget命令下载（推荐）。确保系统已经安装了wget，如果没有安装，执行
 ```
 yum install wget
@@ -72,7 +72,7 @@ cd nginx-1.18.0
 ‘&&’ 表示前一条命令执行成功时，才执行后一条命令 ，如 echo '1‘ && echo '2'。
 ‘|’表示管道，上一条命令的输出，作为下一条命令参数，‘||’表示上一条命令执行失败后，才执行下一条命令
 
-###### linux的复制/剪切命令用法
+##### linux的复制/剪切命令用法
 > 复制/拷贝：
 -  cp  文件名  路径
 ```
@@ -95,7 +95,7 @@ mv  hello.txt  ../java/   //把当前目录下的文件hello.txt剪切到上一�
 mv  hello.txt  ..     //把文件hello.txt移动到上一级目录
 ```
 
-##### 6.nginx启动与停止
+#### 6.nginx启动与停止
 先进入安装目录的sbin文件夹下，
 ```
 cd /usr/local/nginx/sbin
@@ -171,7 +171,7 @@ service nginx restart
 service nginx reload
 ```
 
-##### 7.配置nginx
+#### 7.配置nginx
 首先配置https，通过腾讯云的[++SSL证书管理控制台++](https://console.cloud.tencent.com/ssl)申请SSL证书，或者通过[++certbot++](https://certbot.eff.org/)来注册SSL证书。后者是傻瓜式的，按照官方文档来操作就好。这里介绍下前者的操作方法。
 ![](https://cdn.jsdelivr.net/gh/daxiahu/ImageBed@master/img/20210220163249.png)
 在控制台中点击下载将证书文件下载到本地并解压，根据自己部署的服务器类型选择对应的证书，这里我用的nginx，所以选择nginx证书。
