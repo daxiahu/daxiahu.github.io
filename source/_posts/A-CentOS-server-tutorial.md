@@ -172,7 +172,7 @@ service nginx reload
 ```
 
 #### 7.配置nginx
-首先配置https，通过腾讯云的[++SSL证书管理控制台++](https://console.cloud.tencent.com/ssl)申请SSL证书，或者通过[++certbot++](https://certbot.eff.org/)来注册SSL证书。后者是傻瓜式的，按照官方文档来操作就好。这里介绍下前者的操作方法。
+首先配置https，通过腾讯云的<u>[SSL证书管理控制台](https://console.cloud.tencent.com/ssl)</u>申请SSL证书，或者通过<u>[certbot](https://certbot.eff.org/)</u>来注册SSL证书。后者是傻瓜式的，按照官方文档来操作就好。这里介绍下前者的操作方法。
 ![](https://cdn.jsdelivr.net/gh/daxiahu/ImageBed@master/img/20210220163249.png)
 在控制台中点击下载将证书文件下载到本地并解压，根据自己部署的服务器类型选择对应的证书，这里我用的nginx，所以选择nginx证书。
 nginx文件夹里面有两个文件：
