@@ -1,5 +1,5 @@
 ---
-title: A-CentOS-server-tutorial
+title: 从零搭建个人服务器
 date: 2021-02-20 18:44:54
 tags: 前端日常
 cover: https://cdn.jsdelivr.net/gh/daxiahu/ImageBed@master/img/20210220184714.png
