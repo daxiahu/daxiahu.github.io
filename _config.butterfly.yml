@@ -290,8 +290,8 @@ gitalk:
 # https://valine.js.org
 valine:
   enable: true
-  appId: oicng1cuQBNOolcyyX2W8NSu-gzGzoHsz # leancloud application app id
-  appKey: zuc0bMFwzpdOxu48bPErY9pL # leancloud application app key
+  appId: cnDl4nbEm8YtDfDkJYhVevm0-MdYXbMMI # leancloud application app id
+  appKey: QGOEbfH6yBlkrd9HTp8Njbkj # leancloud application app key
   pageSize: 10 # comment list page size
   avatar: monsterid # gravatar style https://valine.js.org/#/avatar
   lang: zh-CN # i18n: zh-CN/zh-TW/en/ja
@@ -659,8 +659,8 @@ newest_comments:
   avatar: true
   leancloud:
     enable: true
-    appId: oicng1cuQBNOolcyyX2W8NSu-gzGzoHsz # leancloud application app id
-    appKey: zuc0bMFwzpdOxu48bPErY9pL # leancloud application app key
+    appId: cnDl4nbEm8YtDfDkJYhVevm0-MdYXbMMI # leancloud application app id
+    appKey: QGOEbfH6yBlkrd9HTp8Njbkj # leancloud application app key
     serverURL: # This configuration is suitable for domestic custom domain name users, overseas version will be automatically detected (no need to manually fill in)
     default_avatar: # mp/identicon/monsterid/wavatar/retro/robohash/blank
   github_issues:
